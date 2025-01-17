@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
   content: [
@@ -8,11 +9,34 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        arial: ["Arial", "Helvetica", "sans-serif"],
+        sans: "var(--font-geist-sans)",
+        mono: "var(--font-geist-mono)",
+        pacifico: "var(--font-pacifico)",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addBase, addComponents, addUtilities }) => {
+      addBase({
+        html: { "@apply scroll-smooth": {} },
+        body: { "@apply text-base": {} },
+        "body::-webkit-scrollbar": { "@apply hidden": {} },
+        "input, textarea": { "@apply bg-transparent": {} },
+        "input:focus, textarea:focus, select:focus, button:focus": {
+          "@apply outline-none": {},
+        },
+        "input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button":
+          { "@apply hidden": {} },
+      });
+      addComponents({
+        ".main-layout::-webkit-scrollbar": { "@apply hidden": {} },
+      });
+      addUtilities({
+        ".center": { "@apply grid place-items-center": {} },
+        ".prevent-scrolling": { "@apply overflow-hidden": {} },
+      });
+    }),
+  ],
 } satisfies Config;
