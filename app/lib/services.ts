@@ -4,7 +4,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_UNSPLASH_API_URL as string;
 
 const defaultHeaders: HeadersInit = {
   Accept: "application/json",
-  Authorization: `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`,
+  Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
 };
 
 interface RequestOptions extends Omit<RequestInit, "method"> {
@@ -58,7 +58,7 @@ const fetchDefaultImages = async (
       {
         options: {
           headers: {
-            Authorization: `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`,
+            Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
           },
         },
       }
